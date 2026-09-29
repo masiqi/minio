@@ -89,10 +89,34 @@ Alongside the conceptual route:
 - **Production track:** timeout, retry, fallback, idempotency, checkpoint/resume, concurrency, rate limiting, tool/model/RAG failure, observability.
 - **Hands-on track:** incrementally build this repository's lightweight enterprise Agent runtime.
 
+## Day 1 result — 2026-09-29
+
+**Topic:** RNN structural limitations → why Attention
+
+**Accepted core understanding:**
+- RNN processes sequence positions recurrently; historical information is carried through a hidden state rather than re-reading all previous tokens at every step.
+- Long-distance information must pass through many sequential state transitions, making distant dependencies harder to preserve and learn.
+- LSTM/GRU improve information preservation on the recurrent path but do not remove the sequential path itself.
+- Attention changes the information-interaction pattern: a position can directly use information from relevant positions instead of requiring it to traverse the whole recurrent chain.
+- Removing recurrent sequential dependency also enables much greater parallelism during training.
+
+**Corrections / gaps discovered:**
+- Hidden state was initially unclear; revisit RNN hidden-state intuition during review.
+- Attention weights were initially understood as fixed importance attached to each token. Correct model: relevance/attention weights are dynamically computed between positions for the current context.
+- Token embedding and contextual representation need continued separation: identical token embeddings can develop different contextual representations because position and context differ.
+- Do not say Attention has "no path" or that sequence length has no cost.
+
+**Feynman evidence:**
+The learner independently explained that long sequential processing can weaken early information and that Attention shortens the interaction path so relevant information can be used more directly. The final explanation met Day 1's minimum mechanism goal after correction.
+
+**Review target:** Re-test the RNN/LSTM vs Attention causal distinction before or during Day 2, with emphasis on hidden state and information path.
+
 ## Current pointer
 
 - Baseline: completed (2026-09-28)
+- Day 1: completed (2026-09-29)
 - Phase: 30-Day Phase 1
-- Next: Day 1
-- Topic: RNN structural limitations → why Attention
-- Minimum acceptance: explain Attention's design motivation without hints and correctly distinguish Attention's role from positional information.
+- Next: Day 2
+- Topic: Self-Attention and Q/K/V
+- Day 2 entry requirement: explain in one minute why Attention changes the information path relative to RNN/LSTM.
+- Day 2 minimum acceptance: explain why Q, K, and V are three different projections, how they support dynamic token-to-token relevance, and connect the mechanism back to contextual representation without relying on memorized definitions.
