@@ -1,13 +1,13 @@
-# Interview Preparation
+# 面试准备
 
-Interview preparation is part of every learning day rather than a separate final phase.
+面试准备不是最后单独进行的阶段，而是每天学习的一部分。
 
-For each topic we will maintain:
-- sourced real-world interview questions when available;
-- clearly labeled coach-created simulation questions;
-- follow-up questions;
-- the learner's final independent answer;
-- gaps exposed by the interview;
-- a later re-test date.
+针对每个主题，我们会持续维护：
+- 有来源的真实面试题（如果能够获得）；
+- 明确标记为教练创建的模拟题；
+- 追问题；
+- 学习者最终独立完成的回答；
+- 面试过程中暴露出的知识缺口；
+- 后续重新测试日期。
 
-The goal is not to memorize answers. The goal is to explain mechanisms, trade-offs, production consequences, and design choices under follow-up pressure.
+目标不是背答案，而是在追问压力下仍然能够解释机制、trade-off、生产环境影响以及设计选择。
