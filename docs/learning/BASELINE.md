@@ -1,27 +1,27 @@
 # Day 0 — AI Engineering Baseline
 
-Date: 2026-09-28
+日期：2026-09-28
 
-## Capability shape
+## 能力结构
 
-The baseline indicates a deliberately asymmetric profile: practical enterprise/Agent engineering is ahead of low-level LLM mechanism understanding.
+Baseline 显示出一个明显不对称的能力结构：企业工程 / Agent Engineering 实践能力领先于对 LLM 底层机制的理解。
 
-### Priority gaps
+### 优先补齐的缺口
 
-1. Transformer / Attention causal mental model.
-2. Token embedding vs contextual representation.
-3. MCP as a protocol/standardization abstraction rather than primarily remote command execution.
-4. Evaluation methodology beyond tracing/observability.
-5. Structured architecture communication.
+1. Transformer / Attention 的因果心智模型。
+2. Token embedding 与 contextual representation 的区别。
+3. 理解 MCP 的 protocol / standardization abstraction，而不只是把它理解为远程命令执行。
+4. 超越 tracing / observability 的系统化 Evaluation 方法。
+5. 结构化的架构表达能力。
 
-### Existing strengths to leverage
+### 可以利用的已有优势
 
-- backend and enterprise-system reasoning;
-- real Agent/platform implementation experience;
-- RAG pipeline intuition;
-- context/memory separation;
-- security, isolation, permissions, sandbox lifecycle and production failure awareness.
+- 后端与企业系统的工程推理能力；
+- 真实 Agent / 平台实现经验；
+- RAG pipeline 直觉；
+- context / memory 分离意识；
+- security、isolation、permission、sandbox lifecycle 以及生产故障意识。
 
-## Baseline rule
+## Baseline 规则
 
-This is a starting diagnosis, not a permanent score. Topics become mastered only after independent explanation plus targeted follow-up and engineering transfer.
+这是起点诊断，不是永久评分。一个主题只有在能够独立解释、通过针对性追问，并完成工程迁移之后，才算真正掌握。
