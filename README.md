@@ -1,33 +1,33 @@
 # minio
 
-A lightweight enterprise-agent engineering lab.
+一个轻量级的企业 Agent Engineering 实验室。
 
-This repository is both:
-- a hands-on implementation of a small enterprise-grade agent runtime;
-- a persistent learning workspace for AI application architecture and Agent Engineering.
+这个仓库同时承担两个角色：
+- 一个小型企业级 Agent runtime 的动手实现；
+- 一个面向 AI 应用架构与 Agent Engineering 的持续学习工作区。
 
-## Principles
+## 原则
 
-- Learn the mechanism before hiding it behind a framework.
-- Build core agent logic ourselves; reuse infrastructure where it is not educational to reinvent it.
-- Production concerns are first-class: state, retries, idempotency, isolation, security, observability, evaluation.
-- Every important concept must survive Feynman explanation, engineering transfer, and interview follow-up.
+- 在用框架隐藏机制之前，先理解机制本身。
+- 核心 Agent 逻辑自己实现；对于重复造轮子没有学习价值的基础设施则直接复用。
+- 将生产级问题作为一等公民：state、retry、idempotency、isolation、security、observability、evaluation。
+- 每个重要概念都必须经得住费曼解释、工程迁移和面试追问。
 
-## Learning workflow
+## 学习工作流
 
-See [docs/learning/PLAN.md](docs/learning/PLAN.md).
+参见 [docs/learning/PLAN.md](docs/learning/PLAN.md)。
 
-## Project direction
+## 项目方向
 
-The implementation will evolve incrementally rather than starting as a large framework:
-1. minimal agent loop and tool contract
-2. state and failure handling
-3. retrieval/context
+实现会采用渐进式演进，而不是一开始就构建大型框架：
+1. 最小 Agent loop 与 tool contract
+2. state 与 failure handling
+3. retrieval / context
 4. memory
 5. MCP
 6. sandbox runtime
-7. observability and evaluation
-8. multi-tenant/security concerns
-9. compare/refactor with mainstream agent frameworks
+7. observability 与 evaluation
+8. multi-tenant / security
+9. 与主流 Agent framework 对比并重构
 
-Architecture decisions will be recorded under `docs/adr/`.
+架构决策记录在 `docs/adr/` 下。
