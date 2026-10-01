@@ -1,43 +1,43 @@
-# Architecture — Initial Direction
+# Architecture — 初始方向
 
-This is intentionally a learning-oriented, lightweight implementation.
+这是一个有意保持轻量、以学习为导向的实现。
 
-## What we will build ourselves
+## 我们自己实现什么
 
-The parts that directly teach Agent Engineering:
+直接用于学习 Agent Engineering 的部分：
 - Agent loop
-- tool contracts and dispatch
+- tool contract 与 dispatch
 - execution state
-- failure/retry semantics
+- failure / retry 语义
 - context assembly
 - memory orchestration
-- policy boundaries
-- evaluation hooks
+- policy boundary
+- evaluation hook
 
-## What we will reuse
+## 我们复用什么
 
-Commodity infrastructure where reinventing it adds little learning value:
-- database/storage
-- model/provider SDKs
-- MCP SDK/protocol implementation
-- sandbox/microVM infrastructure
-- tracing/metrics backends
+对于重复实现不会带来太多学习价值的通用基础设施，直接复用：
+- database / storage
+- model / provider SDK
+- MCP SDK / protocol implementation
+- sandbox / microVM infrastructure
+- tracing / metrics backend
 
-## Initial logical boundaries
+## 初始逻辑边界
 
-- `agent` — reasoning/execution loop
-- `tools` — typed tool contracts and dispatch
-- `state` — run/checkpoint state
-- `context` — prompt/context assembly
-- `memory` — durable memory interfaces
+- `agent` — reasoning / execution loop
+- `tools` — typed tool contract 与 dispatch
+- `state` — run / checkpoint state
+- `context` — prompt / context assembly
+- `memory` — durable memory interface
 - `runtime` — execution orchestration
 - `sandbox` — isolated execution abstraction
-- `observability` — traces/metrics/events
-- `evaluation` — offline/online evaluation hooks
-- `security` — authorization/policy boundaries
+- `observability` — traces / metrics / events
+- `evaluation` — offline / online evaluation hooks
+- `security` — authorization / policy boundaries
 
-We will delay committing to a concrete sandbox implementation until the sandbox learning/design stage. The interface and threat model come first.
+在进入 sandbox 学习和设计阶段之前，我们暂不确定具体的 sandbox 实现。先定义 interface 和 threat model，再做技术选型。
 
-## Framework strategy
+## Framework 策略
 
-Do not begin by hiding the Agent loop behind LangGraph/LangChain/AutoGen. Implement the minimal mechanism first. Later, rebuild or compare selected flows with frameworks and explain what each abstraction buys us and what it costs.
+不要一开始就用 LangGraph / LangChain / AutoGen 把 Agent loop 隐藏起来。先实现最小机制。之后再使用 framework 重建或对比选定流程，并能够解释每一层 abstraction 带来了什么收益，又付出了什么成本。
