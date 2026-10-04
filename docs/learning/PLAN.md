@@ -111,12 +111,43 @@
 
 **复习目标：** 在 Day 2 前或 Day 2 开始时重新测试 RNN / LSTM 与 Attention 的因果区别，重点检查 hidden state 和 information path。
 
+## Day 2 学习结果 — 2026-10-04
+
+**主题：** Self-Attention 与 Q/K/V
+
+**已接受的核心理解：**
+- Self-Attention 本身负责 token 之间的信息交互；Position Encoding / positional information 负责提供顺序与位置信息，两者职责不同。
+- 同一个 token 的表示通过不同的可学习 projection 生成 Q、K、V：Q 表示当前需要寻找什么信息；K 用于与 Query 做相关性匹配；V 是匹配后实际被加权传递的信息。
+- Q 与所有 K 的匹配是动态、context-dependent 的，不是每个 token 固定拥有一个重要性权重。
+- Attention 的输出不是“选中某一个 Value”，而是根据 attention weights 对多个 Value 加权求和，形成新的 contextualized representation。
+- 一个长度为 n 的序列会形成 n 个 Query，每个 Query 与 n 个 Key 建立相关性；这些计算可以组织为矩阵运算并行执行，而不像 RNN 依赖前一步 hidden state。
+- Multi-Head Attention 的初步直觉已经建立：head 数量代表多个独立 attention 视角；每个 head 的维度代表单个视角的表示空间。不同 head 使用独立参数，并可能在训练中形成不同的关注模式。
+
+**已提前覆盖的 Day 3 内容：**
+- dot product attention score；
+- scaled dot-product 中除以 √d_k 的直觉：控制高维点积的数值尺度，避免 Softmax 过度尖锐；
+- Softmax 将 score 转换为非负且总和为 1 的相对 attention weights，而不是执行 Top-K 硬选择；
+- 使用 attention weights 对 Value 做 weighted sum；
+- Multi-Head 的基本动机与 head 数量 / head dimension 的 trade-off。
+
+**发现并纠正的缺口：**
+- 一度把 Self-Attention 的直接信息交互作用归因于 Position Encoding，已纠正。
+- 一度把 Key 理解为“它能提供什么”，已进一步区分：Key 服务于匹配，Value 服务于实际信息传递。
+- 一度把 Softmax 理解为排序 / 选择前几名，已纠正为连续权重分配。
+- 对 √d_k scaling 最初只记得“让训练更稳定 / 防梯度问题”，现已补上高维点积 → score 尺度增大 → Softmax 过尖 → scaling 控制尺度的因果链。
+- 需要继续巩固：更严谨地表达 Q 的作用，不把 Q 限定为“我是谁”，而是“当前 token 为更新自身表示需要从上下文寻找什么信息”。
+
+**费曼证据：**
+学习者能够以“苹果 / 它 / 好吃”为例，独立串联 Q → 与所有 K 点积 → scaling → Softmax → attention weights → 加权 Value → 新 contextual representation；能够解释 Self-Attention 相比 RNN 为什么更适合并行；能够用“多个专家视角”解释 Multi-Head 的基本动机，并识别 head 过多可能带来的冗余与单 head 表示空间变窄问题。
+
+**Day 2 结论：** 已达到最低通过标准。
+
 ## 当前进度
 
 - Baseline：已完成（2026-09-28）
 - Day 1：已完成（2026-09-29）
+- Day 2：已完成（2026-10-04）
 - 阶段：30-Day Phase 1
-- 下一步：Day 2
-- 主题：Self-Attention 与 Q/K/V
-- Day 2 入场要求：用一分钟解释 Attention 相比 RNN / LSTM 如何改变 information path。
-- Day 2 最低通过标准：能够解释为什么 Q、K、V 是三个不同的 projection，它们如何支持动态 token-to-token relevance，并能够把这一机制连接回 contextual representation，而不是依赖背诵定义。
+- 下一步：Day 3
+- 主题：Attention 计算、Softmax、weighted sum、Multi-Head
+- Day 3 状态：已提前覆盖部分核心内容；下一次学习应先做短时主动回忆，再补齐矩阵形式、完整计算链、边界 / trade-off 与面试表达，避免机械重复今天已掌握内容。
