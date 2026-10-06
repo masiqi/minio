@@ -142,12 +142,46 @@
 
 **Day 2 结论：** 已达到最低通过标准。
 
+## Day 3 学习结果 — 2026-10-06
+
+**主题：** Attention 计算、Softmax、weighted sum、Multi-Head
+
+**已接受的核心理解：**
+- 能够解释完整链条：QKᵀ → /√d_k → Softmax → attention weights → ×V → contextual representation。
+- 理解 √d_k scaling 的统计直觉：维度增加时点积的典型波动尺度约随 √d_k 增长，scaling 用于控制 Softmax 输入尺度。
+- 理解 Softmax 的输入是 score、输出才是 attention weight；同一 Query 对所有 Key 的权重形成分布。
+- 理解 attention weights × V 后得到的是新的 contextual representation，而不是新的 weight。
+- 理解 Self-Attention 对序列长度存在 O(n²) 的关系矩阵开销；Multi-Head 不解决这一平方复杂度。
+- 理解 Multi-Head 拆分的是 representation / feature dimension，不是 token dimension。以 d_model=512、8 heads 为例，每个 head 典型 d_head=64。
+- 每个 head 有独立的 Q/K/V projection；各 head 输出 concat 后再经 W^O 做 feature-level mixing，而不是简单给每个 head 一个 scalar 权重。
+
+**本次发现的主要薄弱点：**
+- Tensor / matrix shape 仍不稳定，是 Day 3 后续复习的最高优先级。
+- 多次混淆 n×n attention score/weight matrix 与 n×d_head head output/contextual representation。
+- 一度不清楚 Q/K/V 在 Multi-Head 中都需要按 head 投影到低维子空间，而误以为主要拆分 V。
+- 一度把 W^O 理解成“给不同 head 分配权重”；已纠正为 concat 后的可学习特征混合 / 重新投影。
+- 面试表达中需要严格区分 score、weight、representation，以及 dot product（点积）等术语。
+
+**延迟回测要求：**
+- 不将 matrix shape 标记为稳定掌握。
+- 在 Day 4 开始前或未来 1–2 次学习中无提示抽查一次；若仍混淆，继续短题训练。
+- 回测至少覆盖：给定 n、d_model、num_heads，推导 d_head；Q、Kᵀ、QKᵀ、Softmax、head output、concat output 的 shape；解释 n×n 与 n×d_head 的语义差异。
+- 只有在隔开后能独立、连续答对，才将该项升级为已掌握。
+
+**费曼 / 追问表现：**
+- 最终能够解释 O(n²) 的来源，并正确判断 Multi-Head 不降低该复杂度。
+- 在延迟回测中最终能够正确回答：Softmax 后的 n×n 是 attention weights；乘 V 后的 n×d_head 是每个 token 的新 contextual representation。
+- Multi-Head 的动机与 head 数量 / head dimension trade-off 已达到可用理解，但 shape 相关表达仍需巩固。
+
+**Day 3 结论：** 达到最低通过标准；matrix/tensor shape 为明确复习项，不视为牢固掌握。
+
 ## 当前进度
 
 - Baseline：已完成（2026-09-28）
 - Day 1：已完成（2026-09-29）
 - Day 2：已完成（2026-10-04）
 - 阶段：30-Day Phase 1
-- 下一步：Day 3
-- 主题：Attention 计算、Softmax、weighted sum、Multi-Head
-- Day 3 状态：已提前覆盖部分核心内容；下一次学习应先做短时主动回忆，再补齐矩阵形式、完整计算链、边界 / trade-off 与面试表达，避免机械重复今天已掌握内容。
+- Day 3：已完成（2026-10-06），最低通过；matrix/tensor shape 需延迟回测
+- 下一步：Day 4
+- 主题：Positional information
+- Day 4 开始前：优先无提示抽查 Day 3 shape（n×n weights vs n×d_head representation；Multi-Head shape 链）
