@@ -8,15 +8,19 @@
 
 **直接阅读：[90 日总览与章节门槛](DAILY_PLAN_90.md) → [D001–D030](daily/D001-D030-foundations-training.md) / [D031–D060](daily/D031-D060-transformer-rag.md) / [D061–D090](daily/D061-D090-agent-production.md)。**
 
+**课前预习与课后复习：[90 个单元知识框架总目录](knowledge/README.md)。** 每单元一份独立 Markdown，包含概念链、公式/例子、易错边界、自测与折叠核对要点；与本计划 D001–D090 一一对应，不另起编号。看过材料不自动改变学习状态，正式验收使用未见题。
+
 90 张卡已逐一准备前置与目标、教学链与误区、练习与交付、独立验收、未过回补与下一单元。它们是教学计划，不是未来实验已完成的声明；正式讲义仍按 DAY_TEMPLATE 展开，实际学习结果另记。
 
 | 文档 | 用途 |
 | --- | --- |
 | [DAILY_PLAN_90.md](DAILY_PLAN_90.md) | 本次完整逐日实施入口、章节范围、工时假设、迁移与通过门槛 |
+| [知识框架总目录](knowledge/README.md) | 90 个单元的预习地图、机制例子、复习自测与核对；不替代实际验收 |
+| [知识框架核查](knowledge/AUDIT.md) | 对齐的计划版本、编写边界与数值检查 |
 | [CURRICULUM_V2.md](CURRICULUM_V2.md) | M00–M10 模块、依赖、三个实践成果及深度 |
 | [LEARNING_STATE.md](LEARNING_STATE.md) | 当前能力证据、旧 Day 迁移、弱点、复习与下一次入口 |
 | [M02 训练机制](modules/M02-training-mechanisms.md) | T01–T08 完整教学链；细分到 D015–D026 |
-| [COACH_PROTOCOL.md](COACH_PROTOCOL.md) | 提前备课、独立验证、纠错、记录与状态同步 |
+| [COACH_PROTOCOL.md](COACH_PROTOCOL.md) | 提前备课、独立验证、纠错、记录与版本核验 |
 | [课程审计](AUDIT_2026-10-06.md) | 原文件证据、缺口与修订理由 |
 | [DAY_TEMPLATE.md](DAY_TEMPLATE.md) | 每个正式单元必须达到的讲义标准 |
 
