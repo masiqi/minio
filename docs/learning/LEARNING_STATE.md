@@ -1,6 +1,6 @@
 # AI Learning Coach — 当前学习状态
 
-更新：2026-10-06。能力总纲：[CURRICULUM_V2.md](CURRICULUM_V2.md)。当前执行入口：[PLAN.md](PLAN.md) → [D001–D090 逐日计划](DAILY_PLAN_90.md)。本次课程完整性审计、逐日规划核查与执行规则修订已完成；尚未恢复新课或追加能力验收。
+更新：2026-10-07。能力总纲：[CURRICULUM_V2.md](CURRICULUM_V2.md)。当前执行入口：[PLAN.md](PLAN.md) → [D001–D090 逐日计划](DAILY_PLAN_90.md)。本次课程完整性审计、逐日规划核查与执行规则修订已完成；尚未恢复新课或追加能力验收。
 
 ## 1. 状态来源与可信度
 
@@ -35,7 +35,7 @@
 | 矩阵/Projection | 一个 1×3 到 1×2 shape 题正确 | 刚接受全维度线性组合；分组压缩误解需换例验证 | 未见实现 | 未做完整独立解释 |
 | Positional Encoding | 已学习动机与逐元素相加 | 多频率、相位、范围/边界为提示后理解 | 未见位置实验 | 不以反复同题确认代替延迟验证 |
 | Multi-Head | 讲解后理解不同可学习投影 | 独立性、Concat/W_O 已讲；完整链待无提示验证 | 未见实现 | 未完成完整费曼验收 |
-| 训练机制 | 主动提出参数如何学的问题 | 梯度、链式法则、autograd 待系统学习 | 未见训练脚本 | 待学习 |
+| 训练机制 | 已进入 Loss / Derivative / Gradient / Chain Rule / 偏导 | 已完成两参数最小 Backprop 主要梯度计算；角色区分仍需延迟验证 | 尚未进入完整 training step / 训练脚本 | 已开始系统学习，未通过完整验收 |
 | RAG/Agent/MCP/Context/安全 | 仓库 Baseline 记有经验/较强直觉 | 本轮未重新评测 | 本轮未检查实际项目源码 | 结构化答辩待验证 |
 | Evaluation | 原 Baseline：tracing 强于系统 eval | 待独立验证 | 未见 eval 数据/报告 | 待验证 |
 
@@ -47,7 +47,7 @@ M00（D001–D006）：待针对性诊断/回补，不从零假设全部不会�
 
 M01（D007–D014）：部分已经学过；Token/Embedding 计划被覆盖的问题需补查；MHA 尚未完整独立通过。
 
-M02（D015–D026）：完整教学计划已建立；尚未授课与验收。原 T01–T08 保留，拆分映射见 DAILY_PLAN_90。
+M02（D015–D026）：2026-10-07 已正式开始训练机制教学。已覆盖 Loss、导数/Gradient、Learning Rate、Chain Rule、偏导，并完成两参数最小计算图的主要梯度计算；尚未完成参数更新、完整 Training Step、Optimizer、矩阵梯度与 Transformer 参数联合训练，因此不能标记为模块通过。
 
 M03–M04（D027–D044）：已有少量术语接触不能视为模块完成。
 
@@ -67,7 +67,7 @@ M10（全程，集中 D088–D090）：局部复述已有证据，综合独立�
 
 再补查 D007/D008 的 Token ID、embedding lookup 与 contextual representation；对 D013/D014 的 MHA 仅处理完整链路/实现未验证项。已稳定的 RNN 动机与 Q/K/V 直觉不整课重学。
 
-必要前置通过后，正式进入 D015–D026 训练机制，再进入 M03 完整 Transformer。不把“为什么参数可训练”重新当临时支线，也不强迫用户先提交之前错位的 Day 5 口述。
+必要前置已于 2026-10-07 针对性复查，并已进入 D015–D026 训练机制。下一次先用换数字的两参数最小网络做短恢复：prediction → error → Loss → backward → 两参数 gradient；通过后立即做一次参数更新并重新 Forward，闭合完整 Training Step，再继续 Optimizer、矩阵梯度与 Transformer 的 WQ/WK/WV/WO 联合训练。不要把“为什么参数可训练”重新当临时支线，也不强迫用户先提交之前错位的 Day 5 口述。
 
 不要立即再问已经重复多次的“没有 PE 的 ABC/CBA 会怎样”。要采用新形状、新条件或故障，检查因果与边界。
 
@@ -81,7 +81,7 @@ M10（全程，集中 D088–D090）：局部复述已有证据，综合独立�
 | D007/D008 前 | Token/Embedding/contextual representation | 原计划 Day 5 被其他主题覆盖 | 新例子说明 ID、lookup、上下文表示及检索 embedding 的区别 | 待检查 |
 | 与讲解隔开后；参考 2026-10-09 | PE、sin/cos、同 token 不同位置 | 多次即时确认，尚不足以证明稳定理解 | D012：无位置且无 mask 的置换边界；不同输入不保证任意网络输出不同 | 待检查 |
 | D013/D014 且前置通过后 | 独立 MHA 全链 | 目前没有完整无提示验收 | 输入→投影→各头→Concat→W_O，包含 shape 和设计反例；核对实际代码 | 待检查 |
-| D015 开始 | 数据/目标/参数、必要数学 | 不能把“联合训练”当成机制掌握 | 按 T01 入场诊断，不要求预先会 backprop | 待学习 |
+| 下一次学习 | Loss / Gradient / Chain Rule / 偏导 / 最小 Backprop | 2026-10-07 已即时算通，但 prediction、error、Loss、Gradient 曾混淆，需跨日恢复 | 换数字两参数网络，无提示完成 Forward 与两个参数 Gradient；通过后做参数更新并验证 Loss 下降 | 已开始，待验证/继续 |
 | D023/D031 | representation→LM head→logits | 课堂提及但不足以认定稳定掌握 | 分清模型维度与 vocabulary 维度，并连接 label 与 Loss | 待学习/验证 |
 | D025/D026 | Head 与 W_O 联合训练 | 本次触发系统规划的核心问题 | 用计算图、矩阵梯度及最小训练实验独立解释，区分 backward 与更新 | 待学习 |
 
@@ -100,3 +100,8 @@ M10（全程，集中 D088–D090）：局部复述已有证据，综合独立�
 已回读核对三册 D001–D090 的前置、练习、验收和章节衔接；当前 PLAN 明确主线、总览、三册入口与版本关系。完整性检查覆盖基础、训练、完整模型、推理/适配、RAG/Context/Memory、Agent、MCP/Harness/Sandbox、Evaluation、企业架构、项目与表达。
 
 该记录确认课程设计与执行工作流，不声称完成三个实践项目、所有未来讲义或用户尚未接受的学习评估。Project Sources 的上传快照没有在此次 GitHub 操作中自动修改。
+
+
+## 9. 2026-10-07 学习记录
+
+详细日报：[reports/2026-10-07.md](reports/2026-10-07.md)。今日完成必要基础复查、Token/Embedding 补查、Position Encoding 主干收口，并正式进入训练机制。当前断点：两参数模型 `ŷ=xw1+w2` 已算到 `∂L/∂w1` 与 `∂L/∂w2`；尚未执行参数更新。下一次从换数字的最小计算图短恢复开始，通过后闭合一次完整 Training Step。
