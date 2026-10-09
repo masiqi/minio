@@ -6,12 +6,13 @@
 - 一个小型企业级 Agent runtime 的动手实现；
 - 一个面向 AI 应用架构与 Agent Engineering 的持续学习工作区。
 
-## 当前学习入口（2026-10-06 修订）
+## 当前学习入口（2026-10-09 修订）
 
-从 [当前计划入口](docs/learning/PLAN.md) 开始。
+从 [当前计划入口](docs/learning/PLAN.md) 开始。**继续学习或换会话时，优先读取 [最新教学 Checkpoint](docs/learning/checkpoints/LATEST.md) 及其指向的完整快照。** 其中包含实际实验输出、已答问题、不重复项与下一动作，不只保存课程进度。
 
 - [能力驱动学习方案 V2](docs/learning/CURRICULUM_V2.md)：数学/表示、训练机制、完整 Transformer、推理、RAG、Agent、MCP/Sandbox、Evaluation 与企业架构。
-- [当前学习状态](docs/learning/LEARNING_STATE.md)：保留已有证据，不把旧 Sources 初始化状态当成当前进度。
+- [当前学习状态](docs/learning/LEARNING_STATE.md)：保留已有证据，与Checkpoint一致，不把旧 Sources 初始化状态当成当前进度。
+- [Checkpoint保存与恢复协议](docs/learning/checkpoints/README.md)：何时保存、必须记录什么、如何读后继续及防止重复提问。
 - [课程完整性审计](docs/learning/AUDIT_2026-10-06.md)：核查发现和修订依据。
 - [M02 神经网络如何学习](docs/learning/modules/M02-training-mechanisms.md)：T01–T08 的完整训练机制模块。
 
