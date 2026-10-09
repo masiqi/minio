@@ -8,7 +8,9 @@
 
 ## 当前学习入口（2026-10-09 修订）
 
-从 [当前计划入口](docs/learning/PLAN.md) 开始。**继续学习或换会话时，优先读取 [最新教学 Checkpoint](docs/learning/checkpoints/LATEST.md) 及其指向的完整快照。** 其中包含实际实验输出、已答问题、不重复项与下一动作，不只保存课程进度。
+**教练/代理先读 [AGENTS.md](AGENTS.md)：每个用户回答后检查是否需要保存教学 checkpoint；有新证据或交接需要时当轮提交，无变化不做空提交。** 具体教学规则与持久化契约通过该文件进入。
+
+从 [当前计划入口](docs/learning/PLAN.md) 开始。**继续学习或换会话时，读取 [最新教学 Checkpoint](docs/learning/checkpoints/LATEST.md) 及其指向的完整快照。** 其中包含实际实验输出、已答问题、不重复项与下一动作，不只保存课程进度。
 
 - [能力驱动学习方案 V2](docs/learning/CURRICULUM_V2.md)：数学/表示、训练机制、完整 Transformer、推理、RAG、Agent、MCP/Sandbox、Evaluation 与企业架构。
 - [当前学习状态](docs/learning/LEARNING_STATE.md)：保留已有证据，与Checkpoint一致，不把旧 Sources 初始化状态当成当前进度。

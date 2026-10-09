@@ -4,7 +4,9 @@
 
 ## 先恢复现场，再选择课程
 
-**继续学习、新会话或换设备后，先读 [最新教学 Checkpoint](checkpoints/LATEST.md)，再读它指向的完整快照、[当前学习状态](LEARNING_STATE.md)与对应日卡。** 快照记录已问已答、实测输出、设备/代码状态和下一动作。不要仅凭旧日报或聊天印象重问基础题。
+**教练/代理首先读取根目录 [AGENTS.md](../../AGENTS.md)，执行“每轮回答后判断是否保存”的规则。** 每轮要判断，但只在有新的有效证据、教学现场变化或交接需求时写 checkpoint；不要等用户提醒。
+
+**继续学习、新会话或换设备后，读取 [最新教学 Checkpoint](checkpoints/LATEST.md)，再读它指向的完整快照、[当前学习状态](LEARNING_STATE.md)与对应日卡。** 快照记录已问已答、实测输出、设备/代码状态和下一动作。不要仅凭旧日报或聊天印象重问基础题。
 
 Checkpoint 保存和恢复规则见 [checkpoints/README.md](checkpoints/README.md)。本入口只提供动态链接，不保留一段会随学习过期的固定“从头检查”指令。
 
@@ -20,6 +22,7 @@ Checkpoint 保存和恢复规则见 [checkpoints/README.md](checkpoints/README.m
 
 | 文档 | 用途 |
 | --- | --- |
+| [AGENTS.md](../../AGENTS.md) | 代理入口、每轮 checkpoint 判定、正常教学与持久化的执行顺序 |
 | [最新Checkpoint](checkpoints/LATEST.md) | 动态恢复指针；必须再读完整快照，不凭一句进度猜下一题 |
 | [Checkpoint协议](checkpoints/README.md) | 保存字段、触发、问答去重、冲突处理与回读要求 |
 | [DAILY_PLAN_90.md](DAILY_PLAN_90.md) | 完整逐日实施入口、章节范围、工时假设、迁移与通过门槛 |
@@ -29,7 +32,7 @@ Checkpoint 保存和恢复规则见 [checkpoints/README.md](checkpoints/README.m
 | [LEARNING_STATE.md](LEARNING_STATE.md) | 当前能力证据、旧 Day 迁移、弱点、复习；与最新Checkpoint保持一致 |
 | [M02 训练机制](modules/M02-training-mechanisms.md) | T01–T08 完整教学链；细分到 D015–D026 |
 | [COACH_PROTOCOL.md](COACH_PROTOCOL.md) | 提前备课、独立验证、纠错、记录与版本核验 |
-| [课程审计](AUDIT_2026-10-06.md) | 原文件证据、缺口与修订理由 |
+| [课程审计](AUDIT_2026-10-06.md) | 核查发现和修订依据 |
 | [DAY_TEMPLATE.md](DAY_TEMPLATE.md) | 每个正式单元必须达到的讲义标准 |
 
 ## 编号与排程优先关系
