@@ -1,24 +1,25 @@
 # AI Learning Coach — 当前学习状态
 updated: 2026-10-10
-current_checkpoint_id: CP-2026-10-10-001
-恢复顺序：[AGENTS](../../AGENTS.md) → [LATEST](checkpoints/LATEST.md) → [CP001完整快照](checkpoints/2026-10-10-001.md) → [D022教学卡](daily/D001-D030-foundations-training.md)。
+current_checkpoint_id: CP-2026-10-10-002
+恢复顺序：[AGENTS](../../AGENTS.md) → [LATEST](checkpoints/LATEST.md) → [CP002完整快照](checkpoints/2026-10-10-002.md) → [D022教学卡](daily/D001-D030-foundations-training.md)。
 
 ## 已证实的最近进度
-M02 / D021 已完成并收口。当前进入 D022：SGD / Momentum / Adam / Optimizer State。
+M02 / D021 已完成。当前 D022：SGD / Momentum / Adam / Optimizer State 进行中。
 
-本轮已建立 Momentum 的历史趋势直觉，并纠正“多个参数共用一个 Momentum 速度”的误区：optimizer state 是逐参数维护。用户能解释若 checkpoint 只保存模型参数、不保存 optimizer state，恢复训练时历史趋势丢失，需要重新积累，训练轨迹会发生变化。
+用户已建立 Momentum 的逐参数历史趋势、Adam 的 m/v 两份逐参数统计、m/sqrt(v) 自适应缩放直觉。已理解平方梯度历史统计再开根号得到类似 RMS 的尺度估计，大梯度会被平方更突出。
 
-Adam 已进入公式与手算阶段。用户理解每个参数滚动维护 m、v，而非保存全部历史梯度：m 保留正负以描述历史方向趋势；v 使用梯度平方以描述历史梯度尺度并避免正负抵消。
+Bias Correction 已讲透到必要机制：m0=v0=0 导致早期 EMA 系统性偏小；m_hat=m/(1-beta1^t)、v_hat=v/(1-beta2^t) 用于当前参数更新，修正值不写回 m/v；随着 t 增大 beta^t→0，修正自然趋弱。用户能正确判断下一步递推继续使用未修正状态。
 
-手算设 m0=v0=0、beta1=0.9、beta2=0.99、g1=+10、g2=-10，得到 m1=1、v1=1、m2=-0.1、v2=1.99。用户已能自行算出 m2，并理解 (-10)^2=100；v2 最后加法经纠正后确认 1.99。
+已理解最终参数更新 theta_t = theta_(t-1) - alpha*m_hat/(sqrt(v_hat)+epsilon)，并明确 theta 是模型参数，m/v 是 optimizer state。
 
-用户进一步理解 Adam 的核心缩放 m/sqrt(v)：当两个参数 m 都为 1，A 的 v=100 时有效比例为 0.1，B 的 v=0.01 时为 10，用户独立判断 B 更新更大。
+用户已能区分 Momentum 与 Adam：两者都利用逐参数历史；Adam 额外根据每个参数自己的历史梯度尺度调节有效步长。优化器选择方面已建立“成熟 recipe + trade-off + 受控实验”的工程判断，不把 SGD/Momentum/Adam 当成等级排行榜。
 
-## 目前教学断点
-D022 进行中。下一步从 m/sqrt(v) 后续机制继续，补必要的 bias correction 与 epsilon，然后按教学卡进入 SGD/自适应优化器对照实验、optimizer state 观察和 checkpoint 保存/恢复一致性实验。Adam 尚未完成完整费曼复述，不标记为完全掌握。
+## 当前教学断点
+用户下班，停止于优化器选择讨论。D022 尚未收口。
+
+## 下一次直接继续
+先用 1-2 个主动回忆问题确认 Bias Correction / Adam 更新链路；必要时补 epsilon；随后严格按 D022 做 SGD（或 SGD+Momentum）与自适应优化器对照实验，观察参数/梯度/optimizer state，再做 checkpoint 保存恢复一致性实验，最后费曼与面试表达收口。
 
 ## 不重复与未完
-不重复 D021 Training Loop、Gradient Accumulation、漏 step、detach/requires_grad、冻结层 forward；也不要从头重复 Momentum 历史趋势、逐参数状态、Adam m/v 基础手算，除非用于主动回忆验证。
-
-D022 未完：bias correction、epsilon、对照实验、state 观察、checkpoint 恢复一致性、费曼收口。
-后续 D023 交叉熵、D024 验证、D025 多头联合训练仍按课程依赖处理。
+不从头重复 D021、Momentum 动机、逐参数 state、+10/-10 m/v 手算、Bias Correction 基础机制，除非主动回忆验证需要。
+D022 未完：epsilon（如需要）、对照实验、state 观察、checkpoint 恢复一致性、费曼收口。
