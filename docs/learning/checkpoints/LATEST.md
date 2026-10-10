@@ -1,12 +1,14 @@
 # 最新教学 Checkpoint
-checkpoint_id: CP-2026-10-09-005
-snapshot: [2026-10-09-005.md](2026-10-09-005.md)
-date: 2026-10-09
+checkpoint_id: CP-2026-10-10-001
+snapshot: [2026-10-10-001.md](2026-10-10-001.md)
+date: 2026-10-10
 
 ## 当前现场
-- D021 Gradient Accumulation 已在 CP004 收口。
-- 本轮完成漏掉 optimizer.step() 故障实验：用户预测并实测参数不更新、Loss 固定为 0.72。
-- 完成误用 detach 实验：prediction detach 后 forward 正常，到 loss.backward() 报不 require grad / 无 grad_fn 类错误。
-- 用户已理解 detach 保留数值但切断梯度路径，并能区分 detach 与 requires_grad=False。
-- 用户已能解释按层冻结：冻结前 50 层参数不代表跳过 forward；第 50 层输出仍是第 51 层输入。
-- 下一步：按课程计划确认 D021 收口并进入下一项，不继续横向扩展冻结/Fine-tuning。
+- D021 已收口，当前正式进入 D022：SGD / Momentum / Adam / Optimizer State。
+- 已理解 Momentum 利用历史趋势，且 optimizer state 是逐参数维护，不是整个模型共用一个速度。
+- 已理解只保存模型参数、不保存 optimizer state 会丢失历史趋势，恢复训练轨迹会变化。
+- Adam 已讲到两份逐参数统计：m 表示历史梯度趋势，v 表示历史梯度平方尺度。
+- 已手算 beta1=0.9、beta2=0.99、g1=+10、g2=-10：m1=1、v1=1、m2=-0.1、v2=1.99。
+- 已理解 +10/-10 在 m 中会抵消、在 v 中因平方不会抵消。
+- 已通过 m/sqrt(v) 对比自行算出：m 都为 1 时，v=100 对应 0.1，v=0.01 对应 10，因此历史尺度会改变有效更新。
+- 下一步：继续 Adam 必要机制（bias correction、epsilon）后进入 D022 对照实验和 checkpoint 保存/恢复实验；不要从头重复 Momentum/Adam 基础直觉。
